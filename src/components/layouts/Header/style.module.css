@@ -1,0 +1,38 @@
+.PageHeader {
+  height: auto;
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
+
+  /* /* width: 1200px;
+  
+  margin: 0 auto; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  border-radius: 50%;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title:not(.ant-title) {
+  color: #69b1ff;
+  margin-bottom: 0;
+}
+
+.user_block {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  color: #69b1ff;
+}
