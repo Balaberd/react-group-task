@@ -18,10 +18,10 @@ export default function PageHeader() {
       <NavLink to={AppRoutes.MAIN} className={style.navLink}>
         <Image
           className={style.logo}
-          width={80}
+          width={60}
           src={IMAGE_URL}
         />
-        <Typography.Title className={style.title}>SPACEFLIGHT NEWS</Typography.Title>
+        <Typography.Title className={style.title}>Spaceflight News</Typography.Title>
       </NavLink>
 
       {/* будет отрисовка по условию: залогинен или нет*/}

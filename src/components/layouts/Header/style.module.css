@@ -1,12 +1,9 @@
-.PageHeader {
+.PageHeader{
   height: auto;
-  /* padding-top: 20px;
-  padding-bottom: 20px; */
-
-  /* /* width: 1200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
   
-  margin: 0 auto; */
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,7 +21,7 @@
 }
 
 .title:not(.ant-title) {
-  color: #69b1ff;
+  color: black;
   margin-bottom: 0;
 }
 
@@ -34,5 +31,7 @@
 }
 
 .button {
-  color: #69b1ff;
+  
+  background-color: white;
+  color: black;
 }
