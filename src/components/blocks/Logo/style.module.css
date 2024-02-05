@@ -1,0 +1,14 @@
+.logo {
+  border-radius: 50%;
+}
+/* 
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+} */
+
+.title:not(.ant-title) {
+  color: black;
+  margin-bottom: 0;
+}

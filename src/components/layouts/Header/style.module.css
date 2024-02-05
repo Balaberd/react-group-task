@@ -1,9 +1,7 @@
 .PageHeader{
   height: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0px;
   background-color: white;
-  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,10 +26,4 @@
 .user_block {
   display: flex;
   gap: 20px;
-}
-
-.button {
-  
-  background-color: white;
-  color: black;
 }

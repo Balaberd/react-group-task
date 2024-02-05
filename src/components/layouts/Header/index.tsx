@@ -1,62 +1,58 @@
 import { NavLink } from "react-router-dom";
-import { Layout, Image, Typography, Button } from 'antd';
+import { Layout } from 'antd';
 import {
   LoginOutlined,
+  UserAddOutlined,
   UserOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
+
+
+import Logo from "../../blocks/Logo/Logo";
+import LinkButton from "../../blocks/LinkButton/LinkButton";
 
 import { AppRoutes } from "../../../lib/const";
 import style from "./style.module.css";
 
 const { Header } = Layout;
-const IMAGE_URL = "https://masterpiecer-images.s3.yandex.net/c6916e0d742b11eeaead5696910b1137:upscaled";
 
 export default function PageHeader() {
+
+  const logoutHandler = () => {
+  };
+
   return (
     <Header className={style.PageHeader}>
       <NavLink to={AppRoutes.MAIN} className={style.navLink}>
-        <Image
-          className={style.logo}
-          width={60}
-          src={IMAGE_URL}
-        />
-        <Typography.Title className={style.title}>Spaceflight News</Typography.Title>
+        <Logo />
       </NavLink>
-
       {/* будет отрисовка по условию: залогинен или нет*/}
       <div className={style.user_block}>
-        <NavLink to={AppRoutes.LOGIN}>
-          <Button className={style.button} icon={<LoginOutlined />}>
-            LOGIN
-          </Button>
-        </NavLink>
-        <NavLink to={AppRoutes.SIGNUP}>
-          <Button className={style.button} icon={<LoginOutlined />}>
-            SIGN UP
-          </Button>
-        </NavLink>
+        <LinkButton
+          navLink={AppRoutes.LOGIN}
+          name="LOGIN"
+          icon={<LoginOutlined />}
+        />
+        <LinkButton
+          navLink={AppRoutes.SIGNUP}
+          name="SIGN UP"
+          icon={<UserAddOutlined />}
+        />
       </div>
-
       {/* будет отрисовка по условию: залогинен или нет*/}
-
       {/* <div className={style.user_block}>
-          <NavLink to='#'>
-            <Button className={style.button} icon={<UserOutlined />}>
-              PROFILE
-            </Button>
-          </NavLink>
-          <NavLink to={AppRoutes.home}>
-            <Button
-              className={style.button}
-              // onClick={logoutHandler}
-              icon={<LogoutOutlined className={style.button} />}
-            >
-              LOGOUT
-            </Button>
-          </NavLink>
-        </div> */}
-
+        <LinkButton
+          navLink="#"
+          name="PROFILE"
+          icon={<UserOutlined />}
+        />
+        <LinkButton
+          navLink={AppRoutes.MAIN}
+          name="LOGOUT"
+          icon={<LogoutOutlined className={style.button} />}
+          onClick={logoutHandler}
+        />
+      </div> */}
     </Header >
   );
 }

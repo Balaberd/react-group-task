@@ -2,11 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppRoutes } from "../../lib/const";
 import PageLayout from "../layouts/PageLayout";
 import MainPage from "../pages/MainPage";
-import Login from "../layouts/Header/Login";
+import Login from "../pages/Login";
 import ReportPage from "../pages/ReportPage";
 import NotFound from "../pages/NotFound";
 import "./App.css";
-import Signup from "../layouts/Header/Signup";
+import Signup from "../pages/Signup";
 
 export default function App() {
   return (

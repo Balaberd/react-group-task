@@ -20,7 +20,6 @@ const FormInputPassword: React.FC<Props> = (props) => {
     ...(props.validatePassword ? [props.validatePassword] : [])
   ];
 
-
   return (
     <Form.Item
       label={props.label}
@@ -31,7 +30,7 @@ const FormInputPassword: React.FC<Props> = (props) => {
       <Input.Password
         value={props.password}
         allowClear
-        onChange={props.onPasswordChange}
+        onChange={props.onPasswordChange}        
       />
     </Form.Item>
   )

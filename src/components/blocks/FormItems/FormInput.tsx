@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input } from 'antd';
-
+import style from './forminput.module.css' ;
 type Props = {
   userError: boolean;
   email: string;
@@ -15,6 +15,7 @@ const FormInput: React.FC<Props> = (props) => {
       validateStatus={props.userError ? "error" : "validating"}
       rules={[{ required: true, message: 'Please input your email!' }]}
     >
+    
       <Input value={props.email} onChange={props.onEmailChange} />
     </Form.Item>
   )
