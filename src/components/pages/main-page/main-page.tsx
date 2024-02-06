@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { articleDataInterface } from "../dataInterface";
+import { articleDataInterface } from "../../../lib/types/articlesData";
 
-import styles from "./style.module.css";
-
-import { fetchSomeArticlesByURL } from "../api";
-import { useDebounce } from "./debounce";
+import { fetchSomeArticlesByURL } from "../../../lib/notSorted/api";
+import { useDebounce } from "../../../lib/notSorted/debounce";
 
 import AddMoreButton from "../../blocks/AddMoreButton/AddMoreButton";
 import Panel from "../../blocks/Panel/Panel";
 import ItemsList from "../../blocks/ItemsList/ItemsList";
 import Item from "../../blocks/Item/Item";
 
-import { articlesTestData } from "../testArticles";
+import styles from "./style.module.css";
+
+import { articlesTestData } from "../../../lib/notSorted/testArticles";
 
 const basicURL: string = "https://api.spaceflightnewsapi.net/v4/articles/";
-const itemsPullSize: number = 1;
+const itemsPullSize: number = 12;
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -99,13 +99,13 @@ export default function MainPage() {
 
   useEffect(
     () => {
-      // the test query was "bin"
-      setNextArticlesURL(articlesTestData.next);
-      setResults(
-        articlesTestData.results.map((data: articleDataInterface) => Item(data, navigate))
-      )
+      // // the test query 
+      // setNextArticlesURL(articlesTestData.next);
+      // setResults(
+      //   articlesTestData.results.map((data: articleDataInterface) => Item(data, navigate))
+      // )
 
-      // getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsPullSize}`)
+      getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsPullSize}`)
     }, []
   );
 

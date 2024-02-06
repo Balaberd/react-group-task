@@ -1,0 +1,28 @@
+.PageHeader{
+  height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--content-wrapper-padding);
+  background-color: var(--content-wrapper-background-color);
+  border-radius: var(--content-wrapper-border-radius);
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title:not(.ant-title) {
+  color: black;
+  margin-bottom: 0;
+}
+
+.user_block {
+  display: flex;
+  gap: 20px;
+}

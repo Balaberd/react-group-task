@@ -15,7 +15,7 @@ const AddMoreButton: React.FC<Props> = (props) => {
           onClick={props.handleAddMore}
         // add disabled
         >
-          {!props.isLoading ? "Узнать больше" : "Подождите..."}
+          {!props.isLoading ? "See more" : "Await..."}
         </button>
       }
     </>

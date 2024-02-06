@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from "./style.module.css"
-import { articleDataInterface } from "../../pages/dataInterface"
+import { articleDataInterface } from "../../../lib/types/articlesData"
 
 export default function Item(data: articleDataInterface, nav: any) {
   return (

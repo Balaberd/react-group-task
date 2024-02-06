@@ -12,7 +12,7 @@ const Panel: React.FC<Props> = (props) => {
   return (
     <>
       <h1 className={styles.sectionTitle}>
-        О чем вы хотите узнать?
+        What you want to know?
       </h1>
       <form onSubmit={props.handleSubmit} className={styles.form}>
         <label className={styles.inputLabel}>
@@ -25,8 +25,8 @@ const Panel: React.FC<Props> = (props) => {
           />
         </label>
       </form>
-      {(props.isLoading) ? <p>Ищем</p> :
-        (props.results.length === 0 && !props.isLoading) ? <p>Ничего не найдено</p> : null
+      {(props.isLoading) ? <p>Await</p> :
+        (props.results.length === 0 && !props.isLoading) ? <p>No result</p> : null
       }
     </>
   )

@@ -1,4 +1,4 @@
-import { articleDataInterface } from "./dataInterface"
+import { articleDataInterface } from "../types/articlesData"
 
 export const articlesTestData: { "count": number, "next": string, "previous": any, "results": any[] } = {
   "count": 136,

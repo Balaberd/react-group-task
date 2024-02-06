@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { articleDataInterface } from "../dataInterface"
+import { articleDataInterface } from "../../../lib/types/articlesData"
 import styles from "./style.module.css"
 
-import { fetchOneArticleByURL } from "../api"
+import { fetchOneArticleByURL } from "../../../lib/notSorted/api"
 
-import { articlesTestData } from "../testArticles"
+import { articlesTestData } from "../../../lib/notSorted/testArticles"
 
 export default function ReportPage() {
   const { articleID } = useParams<string>();
