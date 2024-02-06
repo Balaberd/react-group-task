@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Form } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { AppRoutes } from "../../../lib/const";
 
 import style from "./style.module.css";
-import FormInput from "../../blocks/FormItems/FormInput";
-import FormInputPassword from "../../blocks/FormItems/FormInputPassword";
+import FormInput from "../../blocks/form-items/form-input";
+import FormInputPassword from "../../blocks/form-items/form-input-password";
+import { AppRoutes } from "../../../lib/types/AppRoutes";
 
 export default function Signup() {
 
@@ -25,7 +25,7 @@ export default function Signup() {
     setPassword(e.target.value);
     setUserError(false);
   };
-  
+
   const onRepeatPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRepeatPassword(e.target.value);
     setUserError(false);
@@ -33,7 +33,7 @@ export default function Signup() {
 
   const validatePassword = {
   };
-  
+
   const onSignup = async (value: {
     email: string;
     password: string;
@@ -51,7 +51,7 @@ export default function Signup() {
         onFinish={onSignup}
       >
         <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
-          <NavLink to={AppRoutes.MAIN}>
+          <NavLink to={AppRoutes.Main}>
             <CloseCircleOutlined className={style.close_button} />
           </NavLink>
         </Form.Item>
@@ -78,7 +78,7 @@ export default function Signup() {
           message={"Please repeat your password!"}
           onPasswordChange={onRepeatPasswordChange}
           validatePassword={validatePassword}
-          />
+        />
         <Form.Item wrapperCol={{ offset: 7, span: 14, }}>
           <Button htmlType="submit" className={style.login_button}>
             SIGN UP

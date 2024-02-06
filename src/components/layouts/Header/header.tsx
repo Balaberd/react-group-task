@@ -8,11 +8,11 @@ import {
 } from '@ant-design/icons';
 
 
-import Logo from "../../blocks/Logo/Logo";
-import LinkButton from "../../blocks/LinkButton/LinkButton";
+import Logo from "../../blocks/logo/logo";
+import LinkButton from "../../blocks/link-button/link-button";
 
-import { AppRoutes } from "../../../lib/const";
 import style from "./style.module.css";
+import { AppRoutes } from "../../../lib/types/AppRoutes";
 
 const { Header } = Layout;
 
@@ -23,18 +23,18 @@ export default function PageHeader() {
 
   return (
     <Header className={style.PageHeader}>
-      <NavLink to={AppRoutes.MAIN} className={style.navLink}>
+      <NavLink to={AppRoutes.Main} className={style.navLink}>
         <Logo />
       </NavLink>
       {/* будет отрисовка по условию: залогинен или нет*/}
       <div className={style.user_block}>
         <LinkButton
-          navLink={AppRoutes.LOGIN}
+          navLink={AppRoutes.Login}
           name="LOGIN"
           icon={<LoginOutlined />}
         />
         <LinkButton
-          navLink={AppRoutes.SIGNUP}
+          navLink={AppRoutes.Signup}
           name="SIGN UP"
           icon={<UserAddOutlined />}
         />

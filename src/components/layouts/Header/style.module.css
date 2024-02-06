@@ -1,15 +1,14 @@
 .PageHeader{
   height: auto;
-  padding: 10px 0px;
   background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
 
-.logo {
-  border-radius: 50%;
+  padding: var(--content-wrapper-padding);
+  background-color: var(--content-wrapper-background-color);
+  border-radius: var(--content-wrapper-border-radius);
 }
 
 .navLink {

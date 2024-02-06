@@ -1,4 +1,55 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+body {
+  font-family: Ubuntu, sans-serif;
+  background-color: var(--color-backgound);
+
+  /* ******************** Style Variables ******************** */
+  --color-font: black;
+  --color-backgound: #dddddd;
+  --color-content-wrapper: white;
+
+  /* ********** Content Wrapper Styles ********** */
+  --content-wrapper-background-color: white;
+  --content-wrapper-padding: 12px 24px;
+  --content-wrapper-border-radius: 8px;
+
+}
+
+/* ********** RESET ********** */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
   margin: 0;
   padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
 }

@@ -6,13 +6,15 @@ const IMAGE_URL = "https://masterpiecer-images.s3.yandex.net/c6916e0d742b11eeaea
 
 export default function Logo() {
   return (
-    <>
+    <div className={style.Logo}>
       <img
-        className={style.logo}
-        width={60}
+        className={style.image}
+        width={50}
+        height={50}
         src={IMAGE_URL}
+        alt="логотип"
       />
-      <Typography.Title className={style.title}>Spaceflight News</Typography.Title>
-    </>
+      <h2 className={style.title}>Spaceflight News</h2>
+    </div>
   );
 }

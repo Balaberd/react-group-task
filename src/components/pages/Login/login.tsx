@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Form } from 'antd';
 import { CloseCircleOutlined } from "@ant-design/icons";
-
-import FormInput from "../../blocks/FormItems/FormInput";
-import FormInputPassword from "../../blocks/FormItems/FormInputPassword";
-import { AppRoutes } from "../../../lib/const";
+import { AppRoutes } from "../../../lib/types/AppRoutes";
+import FormInput from "../../blocks/form-items/form-input";
+import FormInputPassword from "../../blocks/form-items/form-input-password";
 import style from "./style.module.css";
 
 
@@ -41,7 +40,7 @@ export default function Login() {
       onFinish={onLogin}
     >
       <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
-        <NavLink to={AppRoutes.MAIN}>
+        <NavLink to={AppRoutes.Main}>
           <CloseCircleOutlined className={style.close_button} />
         </NavLink>
       </Form.Item>
