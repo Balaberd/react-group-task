@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
+import { useNavigate } from 'react-router';
 
 import style from "./style.module.css";
 
@@ -7,19 +8,24 @@ type Props = {
   navLink: string;
   icon?: React.ReactNode;
   name: string;
-  onClick?: () => void;
 };
 
-const LinkButton: React.FC<Props> = ({ navLink, icon, name }) => {
+const NavLinkButton: React.FC<Props> = ({ navLink, icon, name }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(navLink);
+  }
+
   return (
     <Button
       className={style.button}
       type="primary"
-      href={navLink}
       icon={icon}
+      onClick={handleClick}
     >
       {name}
     </Button>
   )
 }
-export default LinkButton;
+export default NavLinkButton;

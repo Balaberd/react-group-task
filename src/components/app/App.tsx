@@ -9,11 +9,9 @@ import { AppRoutes } from "../../lib/types/AppRoutes";
 import FavoritesPage from "../pages/favorites-pages/favorites-pages";
 import PrivateRoute from "../blocks/private-route/private-route";
 import HistoryPage from "../pages/history-page/history-page";
-import "./App.css";
 import React from "react";
+import "./app.css";
 import { ProjectAuthor } from "../../lib/types/ProjectAutor";
-
-
 
 export const AuthorsContext = React.createContext<ProjectAuthor[] | null>(null);
 
