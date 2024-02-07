@@ -1,4 +1,4 @@
-function FavoritesPage() {
+const FavoritesPage = () => {
   return <section>FAVORITE PAGE</section>
 }
 

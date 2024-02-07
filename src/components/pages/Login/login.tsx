@@ -8,8 +8,7 @@ import FormInputPassword from "../../blocks/form-items/form-input-password";
 import style from "./style.module.css";
 
 
-export default function Login() {
-
+const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [userError, setUserError] = useState(false)
@@ -66,3 +65,6 @@ export default function Login() {
     </Form>
   )
 }
+
+
+export default Login;

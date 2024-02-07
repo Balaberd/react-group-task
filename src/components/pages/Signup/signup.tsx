@@ -8,8 +8,7 @@ import FormInput from "../../blocks/form-items/form-input";
 import FormInputPassword from "../../blocks/form-items/form-input-password";
 import { AppRoutes } from "../../../lib/types/AppRoutes";
 
-export default function Signup() {
-
+const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -88,3 +87,6 @@ export default function Signup() {
     </>
   )
 }
+
+
+export default Signup;

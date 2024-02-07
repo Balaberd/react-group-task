@@ -6,7 +6,7 @@ type TProps = {
   isAuth: boolean,
 }
 
-function PrivateRoute({ children, isAuth }: TProps) {
+const PrivateRoute = ({ children, isAuth }: TProps) => {
   return (
     isAuth
       ? children

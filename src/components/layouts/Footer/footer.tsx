@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import { AuthorsContext } from "../../app/app";
 import { ProjectAuthor } from "../../../lib/types/ProjectAutor";
 
-export default function Footer() {
+const Footer = () => {
   const authors = useContext(AuthorsContext)
 
   return (
@@ -14,3 +14,5 @@ export default function Footer() {
         ))}
     </footer>);
 }
+
+export default Footer;

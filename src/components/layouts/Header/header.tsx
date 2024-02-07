@@ -11,11 +11,11 @@ import NavLinkButton from "../../blocks/nav-link-button/nav-link-button";
 
 import style from "./style.module.css";
 import { AppRoutes } from "../../../lib/types/AppRoutes";
-import Logo from "../../blocks/logo/Logo";
+import Logo from "../../blocks/logo/logo";
 
 const { Header } = Layout;
 
-export default function PageHeader() {
+const PageHeader = () => {
 
   const logoutHandler = () => {
   };
@@ -55,3 +55,5 @@ export default function PageHeader() {
     </Header >
   );
 }
+
+export default PageHeader;

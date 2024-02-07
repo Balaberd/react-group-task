@@ -10,13 +10,12 @@ import FavoritesPage from "../pages/favorites-pages/favorites-pages";
 import PrivateRoute from "../blocks/private-route/private-route";
 import HistoryPage from "../pages/history-page/history-page";
 import React from "react";
-import "./app.css";
 import { ProjectAuthor } from "../../lib/types/ProjectAutor";
+import "./app.css";
 
 export const AuthorsContext = React.createContext<ProjectAuthor[] | null>(null);
 
-export default function App() {
-
+const App = () => {
   const Authors: ProjectAuthor[] = [
     { nickname: `GayaneOrlova`, link: "https://github.com/GayaneOrlova" },
     { nickname: `woouwrti`, link: "https://github.com/woouwrti" },
@@ -49,3 +48,5 @@ export default function App() {
     </AuthorsContext.Provider>
   );
 }
+
+export default App;
