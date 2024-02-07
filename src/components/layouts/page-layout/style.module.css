@@ -1,6 +1,6 @@
 .PageLayout {
-  min-height: 100vh;
-  max-width: 1200px;
+  min-height: 100vh; /* add "min-" */
+  max-width: 1200px; /* add "max-" */
   margin: 0 auto;
 
   display: flex;

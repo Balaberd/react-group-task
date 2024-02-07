@@ -10,25 +10,26 @@ type Props = {
 
 const Panel: React.FC<Props> = (props) => {
   return (
-    <>
-      <h1 className={styles.sectionTitle}>
-        What you want to know?
+    <form onSubmit={props.handleSubmit} className={styles.form}>
+      <h1 className={styles.formTitle}>
+        Would you like to know more?
       </h1>
-      <form onSubmit={props.handleSubmit} className={styles.form}>
-        <label className={styles.inputLabel}>
-          <input
-            className={styles.input}
-            type="text"
-            name="article"
-            value={props.queryValue}
-            onChange={props.handleChange}
-          />
-        </label>
-      </form>
-      {(props.isLoading) ? <p>Await</p> :
-        (props.results.length === 0 && !props.isLoading) ? <p>No result</p> : null
-      }
-    </>
+      <label className={styles.label}>
+        <input
+          className={styles.input}
+          type="text"
+          name="articleInput"
+          value={props.queryValue}
+          onChange={props.handleChange}
+        />
+      </label>
+      <p className={styles.statusMessage}>
+        {
+          props.isLoading ? "Await..." :
+            props.results.length === 0 && !props.isLoading ? "No result" : ""
+        }
+      </p>
+    </form>
   )
 }
 

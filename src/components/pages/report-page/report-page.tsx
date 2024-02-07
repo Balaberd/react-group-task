@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react';
 import { articleDataInterface } from "../../../lib/types/articlesData"
 import styles from "./style.module.css"
 
-import { fetchOneArticleByURL } from "../../../lib/notSorted/api"
+import { fetchDataByURL } from "../../../lib/api"
 
-import { articlesTestData } from "../../../lib/notSorted/testArticles"
+import { articlesTestData } from "../../../lib/testArticles"
 
 export default function ReportPage() {
   const { articleID } = useParams<string>();
   const [error, setError] = useState<any[] | null>(null);
   const [data, setData] = useState<articleDataInterface | null>(null);
 
-  const getData = (searchUrl: string) => {
-    fetchOneArticleByURL(searchUrl).then(res => {
+  const getData = (fetchURL: string) => {
+    fetchDataByURL(fetchURL).then(res => {
       if (res.detail || res.error) {
         setError(res.detail || res.error)
       } else {

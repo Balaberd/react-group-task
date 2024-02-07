@@ -13,9 +13,9 @@ const AddMoreButton: React.FC<Props> = (props) => {
         <button
           className={styles.addButton}
           onClick={props.handleAddMore}
-        // add disabled
+          disabled={props.isLoading}
         >
-          {!props.isLoading ? "See more" : "Await..."}
+          {!props.isLoading ? "Know more" : "Await..."}
         </button>
       }
     </>

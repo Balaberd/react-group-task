@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { articleDataInterface } from "../../../lib/types/articlesData";
 
-import { fetchSomeArticlesByURL } from "../../../lib/notSorted/api";
-import { useDebounce } from "../../../lib/notSorted/debounce";
+import { fetchDataByURL } from "../../../lib/api";
+import { useDebounce } from "../../../lib/hooks/debounce";
+import { basicURL, itemsLimitSize } from "../../../lib/const";
 
 import AddMoreButton from "../../blocks/AddMoreButton/AddMoreButton";
 import Panel from "../../blocks/Panel/Panel";
@@ -13,10 +14,7 @@ import Item from "../../blocks/Item/Item";
 
 import styles from "./style.module.css";
 
-import { articlesTestData } from "../../../lib/notSorted/testArticles";
-
-const basicURL: string = "https://api.spaceflightnewsapi.net/v4/articles/";
-const itemsPullSize: number = 12;
+import { articlesTestData } from "../../../lib/testArticles";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -29,20 +27,41 @@ export default function MainPage() {
 
   const debouncedSearchTerm = useDebounce(queryValue, 1000);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setQueryValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const finalURL: string = basicURL + `?search=${queryValue}&limit=${itemsPullSize}`
+    const finalURL: string = getFinalURL()
     getArticles(finalURL);
   };
 
-  const handleAddMore = (event: React.MouseEvent<HTMLButtonElement>) => {
+  function handleAddMore(event: React.MouseEvent<HTMLButtonElement>) {
     getMoreArticles();
   };
+
+  function getFinalURL(): string {
+    return basicURL + `?search=${queryValue}&limit=${itemsLimitSize}`;
+  }
+
+  function installArticles(URL: string, isAddItems: boolean = false) {
+    fetchDataByURL(URL)
+      .then(res => {
+        const { next, results: articles } = res
+        const newItems: React.ReactElement[] = articles
+          .map((data: articleDataInterface) => { return Item(data, navigate) })
+
+        setNextArticlesURL(next)
+
+        !isAddItems ? setResults(newItems) : setResults([...results, ...newItems])
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        setIsLoading(false)
+      })
+  }
 
   function getArticles(finalURL: string) {
     // console.log("get", queryValue);
@@ -52,19 +71,7 @@ export default function MainPage() {
     setIsLoading(true);
     setPrevQueryValue(queryValue);
 
-    fetchSomeArticlesByURL(finalURL)
-      .then(res => {
-        const [next, articles] = res
-        const newItems: React.ReactElement[] = articles
-          .map((data: articleDataInterface) => { return Item(data, navigate) })
-
-        setNextArticlesURL(next)
-        setResults(newItems)
-      }).catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        setIsLoading(false)
-      })
+    installArticles(finalURL, false)
   }
 
   function getMoreArticles() {
@@ -72,40 +79,31 @@ export default function MainPage() {
 
     setIsLoading(true);
 
-    fetchSomeArticlesByURL(nextArticlesURL).then(res => {
-      const [next, articles] = res
-      const newItems: React.ReactElement[] = articles
-        .map((data: articleDataInterface) => { return Item(data, navigate) })
-
-      setNextArticlesURL(next)
-      setResults([...results, ...newItems])
-    }).catch((err) => {
-      console.log(err);
-    }).finally(() => {
-      setIsLoading(false)
-    })
-  }
+    installArticles(nextArticlesURL, true)
+  };
 
   useEffect(
     () => {
       // console.log("useEff check");
-      if ((debouncedSearchTerm === queryValue) && (debouncedSearchTerm !== prevQueryValue)) {
+      if (debouncedSearchTerm !== prevQueryValue) {
         // console.log("useEff true");
-        const finalURL: string = basicURL + `?search=${queryValue}&limit=${itemsPullSize}`
-        getArticles(finalURL)
+        const finalURL: string = getFinalURL()
+        getArticles(finalURL);
       }
     }, [debouncedSearchTerm]
   );
 
   useEffect(
     () => {
-      // // the test query 
+      // init data
+
+      getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsLimitSize}`);
+
+      // // OR the result of test query { basicURL + `?search=bin&limit=12` }
       // setNextArticlesURL(articlesTestData.next);
       // setResults(
       //   articlesTestData.results.map((data: articleDataInterface) => Item(data, navigate))
       // )
-
-      getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsPullSize}`)
     }, []
   );
 
