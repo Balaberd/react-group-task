@@ -40,7 +40,7 @@ export default function Login() {
       initialValues={{ remember: true }}
       onFinish={onLogin}
     >
-      <Form.Item wrapperCol={{ offset: 23, span: 8 }}>
+      <Form.Item wrapperCol={{ offset: 24, span: 3 }}>
         <NavLink to={AppRoutes.MAIN}>
           <CloseCircleOutlined className={style.close_button} />
         </NavLink>
