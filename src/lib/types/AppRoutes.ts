@@ -1,7 +1,7 @@
 export enum AppRoutes {
   Main = "/",
   Login = "/login",
-  Signup = "/signup",
+  SignUp = "/sign-up",
   Report = "/report/:articleID",
   Favorites = "/favorites",
   History = "/history",

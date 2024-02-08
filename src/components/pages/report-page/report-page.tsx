@@ -25,28 +25,31 @@ export default function ReportPage() {
 
   useEffect(() => {
     if (articleID === "22461") {
+      // For develop
       console.log('test article#22461');
       setData(articlesTestData.results[0]);
-    }
-    else {
+    } else {
+      // In the end there will be only this
       getData(`https://api.spaceflightnewsapi.net/v4/articles/${articleID}`)
+
     }
   }, [])
 
   return (
     <section>
-      {error && <h2>{error}</h2>}
-      {data &&
-        <div className={styles.articleContent}>
-          <h2>{data.title}</h2>
-          <img
-            src={data.image_url}
-            alt={data.title}
-            className={styles.articleContentImg}
-          />
-          <p>{data.summary}</p>
-        </div>
-      }
-    </section>
+      <div className={styles.mainContent}>
+        {error ? <h1>{error}</h1> :
+          data ? <>
+            <h1>{data.title}</h1>
+            <img
+              src={data.image_url}
+              alt={data.title}
+              className={styles.mainContentImg}
+            />
+            <p>{data.summary}</p>
+          </> : null
+        }
+      </div >
+    </section >
   );
 };

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import style from "./style.module.css";
-import { AuthorsContext } from "../../app/App";
-import { ProjectAuthor } from "../../../lib/types/ProjectAutor";
+import { AuthorsContext } from "../../app/app";
+import { ProjectAuthor } from "../../../lib/types/ProjectAuthor";
 
 export default function Footer() {
   const authors = useContext(AuthorsContext)
@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className={style.Header}>
       {authors
         && authors.map(({ nickname, link }) => (
-          <a className={style.link} href={link}>{nickname}</a>
+          <a className={style.link} href={link} key={nickname}>{nickname}</a>
         ))}
     </footer>);
 }

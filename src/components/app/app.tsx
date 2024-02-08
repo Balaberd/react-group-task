@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageLayout from "../layouts/page-layout/page-layout";
 import MainPage from "../pages/main-page/main-page";
-import Login from "../pages/Login/login";
+import Login from "../pages/login/login";
 import ReportPage from "../pages/report-page/report-page";
 import NotFound from "../pages/not-found/not-found";
-import Signup from "../pages/Signup/signup";
+import SignUp from "../pages/sign-up/sign-up";
 import { AppRoutes } from "../../lib/types/AppRoutes";
 import FavoritesPage from "../pages/favorites-pages/favorites-pages";
 import PrivateRoute from "../blocks/private-route/private-route";
 import HistoryPage from "../pages/history-page/history-page";
-import "./App.css";
+import "./app.css";
 import React from "react";
-import { ProjectAuthor } from "../../lib/types/ProjectAutor";
+import { ProjectAuthor } from "../../lib/types/ProjectAuthor";
 
 
 
@@ -32,7 +32,7 @@ export default function App() {
           <Route path={AppRoutes.Main} element={<PageLayout />}>
             <Route index element={<MainPage />} />
             <Route path={AppRoutes.Login} element={<Login />} />
-            <Route path={AppRoutes.Signup} element={<Signup />} />
+            <Route path={AppRoutes.SignUp} element={<SignUp />} />
             <Route path={AppRoutes.Report} element={<ReportPage />} />
             <Route path={AppRoutes.Favorites} element={(
               <PrivateRoute isAuth={true}>

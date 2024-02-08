@@ -8,7 +8,7 @@ import FormInput from "../../blocks/form-items/form-input";
 import FormInputPassword from "../../blocks/form-items/form-input-password";
 import { AppRoutes } from "../../../lib/types/AppRoutes";
 
-export default function Signup() {
+export default function SignUp() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

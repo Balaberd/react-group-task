@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { articleDataInterface } from "../../../lib/types/articlesData";
 
@@ -7,10 +7,10 @@ import { fetchDataByURL } from "../../../lib/api";
 import { useDebounce } from "../../../lib/hooks/debounce";
 import { basicURL, itemsLimitSize } from "../../../lib/const";
 
-import AddMoreButton from "../../blocks/AddMoreButton/AddMoreButton";
-import Panel from "../../blocks/Panel/Panel";
-import ItemsList from "../../blocks/ItemsList/ItemsList";
-import Item from "../../blocks/Item/Item";
+import AddMoreButton from "../../blocks/add-more-button/add-more-button";
+import Panel from "../../blocks/panel/panel";
+import ItemsList from "../../blocks/items-list/items-list";
+import Item from "../../blocks/item/item";
 
 import styles from "./style.module.css";
 
@@ -45,6 +45,9 @@ export default function MainPage() {
   function getFinalURL(): string {
     return basicURL + `?search=${queryValue}&limit=${itemsLimitSize}`;
   }
+
+  // count of item defined by "itemsLimitSize" in src/lib/const.ts,  
+  // default itemsLimitSize === 1 for develop
 
   function installArticles(URL: string, isAddItems: boolean = false) {
     fetchDataByURL(URL)
@@ -99,11 +102,11 @@ export default function MainPage() {
 
       getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsLimitSize}`);
 
-      // // OR the result of test query { basicURL + `?search=bin&limit=12` }
+      // // OR you can use result of the test query == basicURL + `?search=bin&limit=12`
       // setNextArticlesURL(articlesTestData.next);
       // setResults(
       //   articlesTestData.results.map((data: articleDataInterface) => Item(data, navigate))
-      // )
+      // )  
     }, []
   );
 

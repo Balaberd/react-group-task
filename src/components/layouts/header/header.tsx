@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 
 
-import Logo from "../../blocks/Logo/Logo";
+import Logo from "../../blocks/logo/logo";
 import LinkButton from "../../blocks/link-button/link-button";
 
 import style from "./style.module.css";
@@ -34,7 +34,7 @@ export default function PageHeader() {
           icon={<LoginOutlined />}
         />
         <LinkButton
-          navLink={AppRoutes.Signup}
+          navLink={AppRoutes.SignUp}
           name="SIGN UP"
           icon={<UserAddOutlined />}
         />
