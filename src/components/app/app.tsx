@@ -31,9 +31,10 @@ export default function App() {
         <Routes>
           <Route path={AppRoutes.Main} element={<PageLayout />}>
             <Route index element={<MainPage />} />
+            <Route path={AppRoutes.Search} element={<MainPage />} />
             <Route path={AppRoutes.Login} element={<Login />} />
             <Route path={AppRoutes.SignUp} element={<SignUp />} />
-            <Route path={AppRoutes.Report} element={<ReportPage />} />
+            <Route path={AppRoutes.Report + "/:articleID"} element={<ReportPage />} />
             <Route path={AppRoutes.Favorites} element={(
               <PrivateRoute isAuth={true}>
                 <FavoritesPage />

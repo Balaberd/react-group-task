@@ -1,5 +1,5 @@
 export function fetchDataByURL(fetchURL: string) {
-
+  // console.log("query:", fetchURL);
   return fetch(fetchURL, { method: 'GET' })
     .then(res => res.json())
     .then(res => {

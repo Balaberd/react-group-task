@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { articleDataInterface } from "../../../lib/types/articlesData";
 
@@ -14,21 +14,29 @@ import Item from "../../blocks/item/item";
 
 import styles from "./style.module.css";
 
-import { articlesTestData } from "../../../lib/testArticles";
-
 export default function MainPage() {
+  // логику запросов надо выкинуть в компонент <Panel /> так, 
+  // чтобы он возвращал только массив данных для будущих карточек
+
+  // а создание карточек в <ItemsList />
+
+  const [searchParamsHooks] = useSearchParams();
+
   const navigate = useNavigate();
 
-  const [queryValue, setQueryValue] = useState<string>("");
-  const [prevQueryValue, setPrevQueryValue] = useState<string>("");
+  const searchParams = new URLSearchParams(document.location.search);
+  const searchQuery: string = String(searchParams.get("search"));
+
+  const [querySearch, setQuerySearch] = useState<string>(searchQuery !== "null" ? searchQuery : "");
+  const [prevQueryValue, setPrevQueryValue] = useState<string>(querySearch);
   const [results, setResults] = useState<React.ReactElement[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [nextArticlesURL, setNextArticlesURL] = useState<string>("");
 
-  const debouncedSearchTerm = useDebounce(queryValue, 1000);
+  const debouncedSearchTerm = useDebounce(querySearch, 1000);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setQueryValue(event.target.value);
+    setQuerySearch(event.target.value);
   };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -43,20 +51,24 @@ export default function MainPage() {
   };
 
   function getFinalURL(): string {
-    return basicURL + `?search=${queryValue}&limit=${itemsLimitSize}`;
+    return basicURL + `?search=${querySearch}&limit=${itemsLimitSize}`;
   }
 
-  // count of item defined by "itemsLimitSize" in src/lib/const.ts,  
-  // default itemsLimitSize === 1 for develop
+  function installArticles(finalURL: string, isAddItems: boolean = false) {
+    // console.log("get articles");
 
-  function installArticles(URL: string, isAddItems: boolean = false) {
-    fetchDataByURL(URL)
+    const url = new URL(finalURL)
+
+    // {url.search} не безопасно, надо изменить
+    navigate(`/search${url.search}`, { replace: true });
+
+    fetchDataByURL(finalURL)
       .then(res => {
-        const { next, results: articles } = res
+        const { next: nextURL, results: articles } = res
         const newItems: React.ReactElement[] = articles
           .map((data: articleDataInterface) => { return Item(data, navigate) })
 
-        setNextArticlesURL(next)
+        setNextArticlesURL(nextURL)
 
         !isAddItems ? setResults(newItems) : setResults([...results, ...newItems])
       }).catch((err) => {
@@ -67,12 +79,12 @@ export default function MainPage() {
   }
 
   function getArticles(finalURL: string) {
-    // console.log("get", queryValue);
+    // console.log("get", querySearch);
 
     setNextArticlesURL("");
     setResults([]);
     setIsLoading(true);
-    setPrevQueryValue(queryValue);
+    setPrevQueryValue(querySearch);
 
     installArticles(finalURL, false)
   }
@@ -85,37 +97,54 @@ export default function MainPage() {
     installArticles(nextArticlesURL, true)
   };
 
-  useEffect(
-    () => {
-      // console.log("useEff check");
-      if (debouncedSearchTerm !== prevQueryValue) {
-        // console.log("useEff true");
-        const finalURL: string = getFinalURL()
-        getArticles(finalURL);
+  useEffect(() => {
+    // console.log("useEff check");
+
+    if (debouncedSearchTerm !== prevQueryValue && prevQueryValue !== querySearch) {
+      // console.log("useEff true");
+
+      const finalURL: string = getFinalURL()
+      getArticles(finalURL);
+    }
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    // реализовать, используя searchParamsHooks
+    if (window.location.pathname === "/") {
+      setNextArticlesURL("");
+      setResults([]);
+
+      setQuerySearch("");
+      setPrevQueryValue("");
+    }
+  }, [searchParamsHooks])
+
+  useEffect(() => {
+    if (searchParams.toString()) {
+      // если в URL есть параметры делаем запрос и получает limit + offset страниц
+      const limit = Number(searchParams.get("limit")); // количество полученных итемов в последнем запросе
+      const offset = Number(searchParams.get("offset")); // количество уже полученных итемов в прошлых запросах
+
+      getArticles(basicURL + `?search=${querySearch}&limit=${offset + limit}`); // плюсуем их чтобы получить бывшее количество итемов
+
+      // если у нас в ответе сервера получена ссылка на следующую страницу
+      // т.е. есть еще данные
+      // то приводим URL последующего запроса в порядок
+      if (nextArticlesURL) {
+        setNextArticlesURL(basicURL + `?search=${querySearch}&limit=${limit}&offset=${offset}`)
       }
-    }, [debouncedSearchTerm]
-  );
-
-  useEffect(
-    () => {
-      // init data
-
+    } else if (window.location.pathname !== "/") {
+      // если параметров нет то берем первые itemsLimitSize статей
       getArticles(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${itemsLimitSize}`);
-
-      // // OR you can use result of the test query == basicURL + `?search=bin&limit=12`
-      // setNextArticlesURL(articlesTestData.next);
-      // setResults(
-      //   articlesTestData.results.map((data: articleDataInterface) => Item(data, navigate))
-      // )  
-    }, []
-  );
+    }
+  }, []);
 
   return (
     <section className={styles.section}>
       <Panel
         handleSubmit={handleSubmit}
         handleChange={handleChange}
-        queryValue={queryValue}
+        querySearch={querySearch}
         results={results}
         isLoading={isLoading}
       />

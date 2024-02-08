@@ -3,7 +3,7 @@ import styles from "./style.module.css"
 type Props = {
   handleSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  queryValue?: string;
+  querySearch?: string;
   results: React.ReactElement[];
   isLoading: boolean;
 };
@@ -19,7 +19,7 @@ const Panel: React.FC<Props> = (props) => {
           className={styles.input}
           type="text"
           name="articleInput"
-          value={props.queryValue}
+          value={props.querySearch}
           onChange={props.handleChange}
         />
       </label>
