@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageLayout from "../layouts/page-layout/page-layout";
 import MainPage from "../pages/main-page/main-page";
-import Login from "../pages/login/login";
+import Login from "../pages/Login/login";
 import ReportPage from "../pages/report-page/report-page";
 import NotFound from "../pages/not-found/not-found";
-import Signup from "../pages/signup/signup";
+import SignUp from "../pages/SignUp/sign-up";
 import { AppRoutes } from "../../lib/types/AppRoutes";
 import FavoritesPage from "../pages/favorites-pages/favorites-pages";
 import PrivateRoute from "../blocks/private-route/private-route";
 import HistoryPage from "../pages/history-page/history-page";
 import React from "react";
-import { ProjectAuthor } from "../../lib/types/ProjectAutor";
-import "./app.css";
+import { ProjectAuthor } from "../../lib/types/ProjectAuthor";
+import "./App.css";
 
 export const AuthorsContext = React.createContext<ProjectAuthor[] | null>(null);
 
@@ -28,9 +28,10 @@ const App = () => {
         <Routes>
           <Route path={AppRoutes.Main} element={<PageLayout />}>
             <Route index element={<MainPage />} />
+            <Route path={AppRoutes.Search} element={<MainPage />} />
             <Route path={AppRoutes.Login} element={<Login />} />
-            <Route path={AppRoutes.Signup} element={<Signup />} />
-            <Route path={AppRoutes.Report} element={<ReportPage />} />
+            <Route path={AppRoutes.SignUp} element={<SignUp />} />
+            <Route path={AppRoutes.Report + "/:articleID"} element={<ReportPage />} />
             <Route path={AppRoutes.Favorites} element={(
               <PrivateRoute isAuth={true}>
                 <FavoritesPage />

@@ -11,7 +11,7 @@ import NavLinkButton from "../../blocks/nav-link-button/nav-link-button";
 
 import style from "./style.module.css";
 import { AppRoutes } from "../../../lib/types/AppRoutes";
-import Logo from "../../blocks/logo/logo";
+import Logo from "../../blocks/Logo/Logo";
 
 const { Header } = Layout;
 
@@ -33,7 +33,7 @@ const PageHeader = () => {
           icon={<LoginOutlined />}
         />
         <NavLinkButton
-          navLink={AppRoutes.Signup}
+          navLink={AppRoutes.SignUp}
           name="SIGN UP"
           icon={<UserAddOutlined />}
         />
