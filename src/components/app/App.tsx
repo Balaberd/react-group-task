@@ -1,24 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageLayout from "../layouts/page-layout/page-layout";
 import MainPage from "../pages/main-page/main-page";
-import Login from "../pages/login/login";
+import Login from "../pages/Login/login";
 import ReportPage from "../pages/report-page/report-page";
 import NotFound from "../pages/not-found/not-found";
-import SignUp from "../pages/sign-up/sign-up";
+import SignUp from "../pages/SignUp/sign-up";
 import { AppRoutes } from "../../lib/types/AppRoutes";
 import FavoritesPage from "../pages/favorites-pages/favorites-pages";
 import PrivateRoute from "../blocks/private-route/private-route";
 import HistoryPage from "../pages/history-page/history-page";
-import "./app.css";
 import React from "react";
 import { ProjectAuthor } from "../../lib/types/ProjectAuthor";
-
-
+import "./App.css";
 
 export const AuthorsContext = React.createContext<ProjectAuthor[] | null>(null);
 
 export default function App() {
-
   const Authors: ProjectAuthor[] = [
     { nickname: `GayaneOrlova`, link: "https://github.com/GayaneOrlova" },
     { nickname: `woouwrti`, link: "https://github.com/woouwrti" },

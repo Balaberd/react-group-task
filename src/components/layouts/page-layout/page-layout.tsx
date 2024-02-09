@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
-import PageHeader from "../header/header";
+import PageHeader from "../Header/header";
 import style from "./style.module.css";
-import Footer from "../footer/footer";
+import Footer from "../Footer/footer";
 
 export default function PageLayout() {
   return (

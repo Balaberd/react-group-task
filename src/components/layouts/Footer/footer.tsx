@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import style from "./style.module.css";
-import { AuthorsContext } from "../../app/app";
+import { AuthorsContext } from "../../app/App";
 import { ProjectAuthor } from "../../../lib/types/ProjectAuthor";
 
-export default function Footer() {
+const Footer = () => {
   const authors = useContext(AuthorsContext)
 
   return (
@@ -14,3 +14,5 @@ export default function Footer() {
         ))}
     </footer>);
 }
+
+export default Footer;
