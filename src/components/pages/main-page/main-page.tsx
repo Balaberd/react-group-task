@@ -14,7 +14,7 @@ import Item from "../../blocks/item/item";
 
 import styles from "./style.module.css";
 
-export default function MainPage() {
+const MainPage = () => {
   // логику запросов надо выкинуть в компонент <Panel /> так, 
   // чтобы он возвращал только массив данных для будущих карточек
 
@@ -160,3 +160,5 @@ export default function MainPage() {
     </section>
   );
 }
+
+export default MainPage;

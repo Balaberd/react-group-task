@@ -8,7 +8,7 @@ import { fetchDataByURL } from "../../../lib/api"
 
 import { articlesTestData } from "../../../lib/testArticles"
 
-export default function ReportPage() {
+const ReportPage = () => {
   const { articleID } = useParams<string>();
   const [error, setError] = useState<any[] | null>(null);
   const [data, setData] = useState<articleDataInterface | null>(null);
@@ -53,3 +53,5 @@ export default function ReportPage() {
     </section >
   );
 };
+
+export default ReportPage;
