@@ -15,7 +15,7 @@ import "./App.css";
 
 export const AuthorsContext = React.createContext<ProjectAuthor[] | null>(null);
 
-export default function App() {
+const App = () => {
   const Authors: ProjectAuthor[] = [
     { nickname: `GayaneOrlova`, link: "https://github.com/GayaneOrlova" },
     { nickname: `woouwrti`, link: "https://github.com/woouwrti" },
@@ -49,3 +49,5 @@ export default function App() {
     </AuthorsContext.Provider>
   );
 }
+
+export default App;

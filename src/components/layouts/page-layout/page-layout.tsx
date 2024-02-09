@@ -3,7 +3,7 @@ import PageHeader from "../Header/header";
 import style from "./style.module.css";
 import Footer from "../Footer/footer";
 
-export default function PageLayout() {
+const PageLayout = () => {
   return (
     <div className={style.PageLayout}>
       <PageHeader />
@@ -14,3 +14,5 @@ export default function PageLayout() {
     </div>
   );
 }
+
+export default PageLayout;
